@@ -1,0 +1,37 @@
+.player {
+    background: url('../img/mario_sprite_sheet.png') no-repeat;
+
+    position: absolute;
+    
+    /* Debug */
+    top: 100px;
+    left: 100px;
+}
+
+.player.walking-right, .player.walking-left {
+    animation: walk .25s steps(2) infinite;
+}
+
+.player.walking-left {
+    transform: scaleX(-1);
+    filter: flipH;
+}
+
+.player.idle {
+    background-position: -14px -10px;
+    width: 14px;
+    height: 20px;
+}
+
+@keyframes walk {
+    from { 
+        background-position: -31px -10px;
+        width: 15px;
+        height: 19px;
+    }
+    to {
+        background-position: 4px -10px;
+        width: 14px;
+        height: 20px;
+    }
+}

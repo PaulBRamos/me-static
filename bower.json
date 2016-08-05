@@ -1,0 +1,20 @@
+{
+  "name": "me-static",
+  "description": "Description",
+  "main": "",
+  "authors": [
+    "Your Name"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/PaulBRamos/me-static",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.3.0"
+  }
+}
