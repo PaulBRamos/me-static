@@ -12,12 +12,12 @@
     animation: walk .25s steps(2) infinite;
 }
 
-.player.walking-left {
+.player.walking-left, .player.idle-left {
     transform: scaleX(-1);
     filter: flipH;
 }
 
-.player.idle {
+.player.idle-right, .player.idle-left {
     background-position: -14px -10px;
     width: 14px;
     height: 20px;

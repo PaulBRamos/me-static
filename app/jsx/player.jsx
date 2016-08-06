@@ -1,11 +1,12 @@
 window.Player = React.createClass({
-    IDLE: "idle",
+    IDLE_RIGHT: "idle-right",
+    IDLE_LEFT: "idle-left",
     WALKING_RIGHT: "walking-right",
     WALKING_LEFT: "walking-left",
 
     getInitialState: function () {
         return {
-            action: this.IDLE,
+            action: this.IDLE_RIGHT,
             top: 100,
             left: 100,
             accelration: 1
