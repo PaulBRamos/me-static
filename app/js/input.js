@@ -15,6 +15,10 @@ window.addEventListener('keyup', (event) => {
 
 // TODO: definitely can be optinmized, and consolidate somse stuff
 // maybe the player is responsible for calculating its own state?
+// I think the right way to do this was to have an array of gameobjects
+// that checked for input, similar to what we're doing with imposeGraphivty
+// in the physics module, but considering only the player ever responds to
+// input in our little app, it doesn't make much of a difference
 export function checkInput() {
     let action = window.Game.player.IDLE_RIGHT,
         left = window.Game.player.state.left,

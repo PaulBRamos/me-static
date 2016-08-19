@@ -7,10 +7,16 @@ window.Player = React.createClass({
     getInitialState: function () {
         return {
             action: this.IDLE_RIGHT,
-            top: 100,
+            top: 208,
             left: 100,
             accelration: 1
         };
+    },
+    getWidth: function() {
+        return this.refs.player.getDOMNode().getBoundingClientRect().width;
+    },
+    getHeight: function() {
+        return this.refs.player.getDOMNode().getBoundingClientRect().height;
     },
     render: function () {
         var playerClass = "player " + this.state.action;
@@ -20,7 +26,7 @@ window.Player = React.createClass({
         };
 
         return (
-            <div className={playerClass} style={style}>
+            <div className={playerClass} style={style} ref="player">
                 
             </div>
         );
