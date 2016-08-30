@@ -1,7 +1,6 @@
 let baseAcceleration = 0.6;
 
 export function imposeGravity(gameObjects) {
-    console.log(gameObjects);
     for (var object in gameObjects)  {
         let currObject = gameObjects[object];
 

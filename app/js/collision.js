@@ -1,4 +1,4 @@
-export function checkCollision(gameObjects) {
+export function checkCollision(gameObjects) {    
     for (var i in gameObjects) {
         var currentObject = gameObjects[i];
 
@@ -10,18 +10,32 @@ export function checkCollision(gameObjects) {
                 continue;
             }
 
-            // check x
-            if (currentObject.state.left < compareObject.state.left &&
-                currentObject.state.left + currentObject.getWidth() > compareObject.state.left) {
-                // collision happened on x-axis
-            }
+            // collision for X-Axis, ignoring the ground
+            if ( currentObject.state.type != "ground" && compareObject.state.type != "ground" &&
+                 currentObject.state.left + currentObject.getWidth() > compareObject.state.left &&
+                 currentObject.state.left <= compareObject.state.left + compareObject.getWidth() &&
+                 currentObject.state.top + currentObject.getHeight() > compareObject.state.top + 2) {
 
-            // check y
-            if (currentObject.state.top < compareObject.state.top &&
-                currentObject.state.top + currentObject.getHeight() > compareObject.state.top) {
-                // collision happened on y-axis
+                if ( currentObject.state.type == "player") {
+                    if ( currentObject.state.left < compareObject.state.left) {
+                        currentObject.state.acceleration = 0.5;
+                        currentObject.state.left = compareObject.state.left - currentObject.getWidth();
+                    }
+                    else if (currentObject.state.left > compareObject.state.left) {
+                        currentObject.state.left = compareObject.state.left + compareObject.getWidth();
+                        currentObject.state.acceleration = 0.5;
+                    }
+                }
             }
+            // collision for gravity y-axis
+            else if ( currentObject.state.top + currentObject.getHeight() > compareObject.state.top &&
+                 currentObject.state.left > compareObject.state.left - 5 && 
+                (currentObject.state.left < (compareObject.state.left + compareObject.getWidth() - 5)) ) {
+                currentObject.state.top = compareObject.state.top - currentObject.getHeight();
 
+                currentObject.state.grounded = true;
+                currentObject.state.yAccel = 0.6;
+            }    
         }
     }
 }

@@ -1,0 +1,15 @@
+.tunnel-mountains {
+    background: url('../img/tunnel_green.png') no-repeat;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+}
+/*.tunnel-mountains:after {
+    content: "";
+    background: url("../img/green_tunnel_stretch.png") repeat-y;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    height: 20px;
+    width: 32px;
+}*/

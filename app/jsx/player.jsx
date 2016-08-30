@@ -3,23 +3,41 @@ window.Player = React.createClass({
     IDLE_LEFT: "idle-left",
     WALKING_RIGHT: "walking-right",
     WALKING_LEFT: "walking-left",
+    JUMP_RIGHT: "jump-right",
+    JUMP_LEFT: "jump-left",
 
     getInitialState: function () {
         return {
             action: this.IDLE_RIGHT,
-            top: 208,
-            left: 100,
-            accelration: 1
+            top: 0,
+            left: 200,
+            accelration: 1,
+            type: "player",
+            grounded: null
         };
     },
     getWidth: function() {
-        return this.refs.player.getDOMNode().getBoundingClientRect().width;
+        return document.querySelector(".player").getBoundingClientRect().width;
     },
     getHeight: function() {
-        return this.refs.player.getDOMNode().getBoundingClientRect().height;
+        return document.querySelector(".player").getBoundingClientRect().height;
     },
     render: function () {
+        if (!this.state.grounded) {
+            if (this.state.action == this.WALKING_RIGHT ||
+                this.state.action == this.IDLE_RIGHT) {
+                this.state.action = this.JUMP_RIGHT;
+                // console.log("change to rogjt jump");
+            }
+            else if (this.state.action == this.WALKING_LEFT ||
+                this.state.action == this.IDLE_LEFT) {
+                // console.log("change to left jump");
+                this.state.action = window.Game.player.JUMP_LEFT;
+            }
+        }
+
         var playerClass = "player " + this.state.action;
+
         var style = {
             top: this.state.top,
             left: this.state.left

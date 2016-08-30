@@ -8,4 +8,5 @@
 .ground-center-mountains {
     background: url('../img/ground_center_mountains.jpg') repeat-x;
     height: 27px;
+    position: relative;
 }

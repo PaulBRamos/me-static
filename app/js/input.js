@@ -2,7 +2,8 @@ let keyState = {};
 
 const keys = {
     LEFT: 37,
-    RIGHT: 39
+    RIGHT: 39,
+    UP: 38
 };
 
 window.addEventListener('keydown', (event) => {
@@ -23,7 +24,7 @@ export function checkInput() {
     let action = window.Game.player.IDLE_RIGHT,
         left = window.Game.player.state.left,
         acceleration = window.Game.player.state.acceleration;
-
+    
     if (keyState[keys.LEFT] && keyState[keys.RIGHT]) {
         acceleration = 0;
 
@@ -34,13 +35,23 @@ export function checkInput() {
             action = window.Game.player.IDLE_LEFT;
         }
     }
-    else if (keyState[keys.LEFT]) {
+
+    if (keyState[keys.UP]) {
+        if (window.Game.player.state.grounded) {
+            window.Game.player.state.yAccel = -3;
+            window.Game.player.state.grounded = false;
+        }
+    }
+    if (keyState[keys.LEFT]) {
         // reset acceleration to 0 if switching to opposite side
         if (window.Game.player.state.action == window.Game.player.WALKING_RIGHT) {
             acceleration = 0;
         }
-
+        
+        
         action = window.Game.player.WALKING_LEFT;
+        
+
         left = left - (1 * acceleration);
         
         if (acceleration < 1) {
@@ -62,7 +73,9 @@ export function checkInput() {
     else {
         /* de-accelrate to stop */
         if (acceleration > 0) {
-            acceleration -= 0.07;
+            if (window.Game.player.state.grounded) {
+                acceleration -= 0.02;
+            }            
         }
         else {
             acceleration = 0;
@@ -72,9 +85,15 @@ export function checkInput() {
         // change that to the appropriate idle sprite depending on current state
         // and value of acceleration
         if (window.Game.player.state.action == window.Game.player.WALKING_LEFT || 
-            window.Game.player.state.action == window.Game.player.IDLE_LEFT) {
+            window.Game.player.state.action == window.Game.player.IDLE_LEFT || 
+            window.Game.player.state.action == window.Game.player.JUMP_LEFT) {
             if (acceleration === 0) {
-                action = window.Game.player.IDLE_LEFT;
+                if (window.Game.player.state.grounded) {
+                    action = window.Game.player.IDLE_LEFT;
+                }
+                else {
+                    action = window.Game.player.JUMP_LEFT;
+                }
             }
             else {
                 action = window.Game.player.WALKING_LEFT;
@@ -82,9 +101,15 @@ export function checkInput() {
             left = left - (1 * acceleration);
         }
         else if (window.Game.player.state.action == window.Game.player.WALKING_RIGHT ||
-                 window.Game.player.state.action == window.Game.player.IDLE_RIGHT) {
+                 window.Game.player.state.action == window.Game.player.IDLE_RIGHT ||
+                 window.Game.player.state.action == window.Game.player.JUMP_RIGHT) {
             if (acceleration === 0) {
-                action = window.Game.player.IDLE_RIGHT;
+                if (window.Game.player.state.grounded) {
+                    action = window.Game.player.IDLE_RIGHT;
+                }
+                else {
+                    action = window.Game.player.JUMP_RIGHT;
+                }
             }
             else {
                 action = window.Game.player.WALKING_RIGHT;

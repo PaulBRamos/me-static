@@ -19,6 +19,17 @@
     height: 20px;
 }
 
+.player.jump-left {
+    transform: scaleX(-1);
+    filter: flipH;   
+}
+
+.player.jump-right, .player.jump-left {
+    background-position: -133px -7px;
+    width: 15px;
+    height: 22px;
+}
+
 @keyframes walk {
     from { 
         background-position: -31px -10px;
