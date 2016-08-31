@@ -1,6 +1,6 @@
 .player {
     background: url('../img/mario_sprite_sheet.png') no-repeat;
-
+    z-index: 999;
     position: absolute;
 }
 

@@ -1,11 +1,20 @@
 export class Stage {
     constructor(config) {
         this.config = config;
-        this.objects = [];
+        this.gameObjects = [];
+
+        this.render();
+
+        if (this.config.gameObjects) {
+            for (let i in this.config.gameObjects) {
+                let gameObject = this.config.gameObjects[i];
+                this.addObject(gameObject);
+            }
+        }
     }
 
     addObject(object) {
-        this.objects.push(object);
+        this.gameObjects.push(object);
         object.render(document.querySelector(this.config.targetOutletSelector), this.config.theme);
     }
 

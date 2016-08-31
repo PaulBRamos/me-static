@@ -1,0 +1,53 @@
+.main-logo {
+    background: url("../img/mario_title.png") no-repeat;
+    width: 200px;
+    height: 72px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -100px;
+
+    animation: scrolldown cubic-bezier(0.645, 0.045, 0.355, 1) 2s;
+}
+
+@keyframes scrolldown {
+    0% { 
+        top: -100px;
+    }
+    100% {
+        top: 50px;
+    }
+}
+
+.label {
+    color: #fff;
+    font-size: 8px;
+    font-family: Emulogic;
+    position: absolute;
+
+    text-shadow: 1px 1px 3px #000;
+
+    animation: textfloatbounce cubic-bezier(0.645, 0.045, 0.355, 1) 2s infinite;
+}
+
+@keyframes textfloatbounce {
+    0% {
+        margin-top: 0;
+    }
+    50% {
+        margin-top: 10px;
+    }
+    100% {
+        margin-top: 0;
+    }
+}
+
+@font-face {
+    font-family: "Emulogic";
+    src: url("../font/emulogic.ttf");
+}
+
+@font-face {
+    font-family: "Mario";
+    src: url("../font/mario.ttf");
+}

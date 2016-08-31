@@ -18,12 +18,16 @@ export function checkCollision(gameObjects) {
 
                 if ( currentObject.state.type == "player") {
                     if ( currentObject.state.left < compareObject.state.left) {
-                        currentObject.state.acceleration = 0.5;
                         currentObject.state.left = compareObject.state.left - currentObject.getWidth();
+                        if (!currentObject.state.grounded) {
+                            currentObject.state.acceleration = 0.5;
+                        }
                     }
                     else if (currentObject.state.left > compareObject.state.left) {
                         currentObject.state.left = compareObject.state.left + compareObject.getWidth();
-                        currentObject.state.acceleration = 0.5;
+                        if (!currentObject.state.grounded) {
+                            currentObject.state.acceleration = 0.5;
+                        }
                     }
                 }
             }

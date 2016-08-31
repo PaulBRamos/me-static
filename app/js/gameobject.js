@@ -27,6 +27,16 @@ export class GameObject {
 
         selectedElement.style.top = this.state.top + "px";
         selectedElement.style.left = this.state.left + "px";
+
+        if (this.config.label) {
+            let selectedElementLabel = document.querySelector(this.config.labelIdSelector);
+
+            let labelPositionTop = this.state.top - 40,
+                labelPositionLeft = this.state.left - (selectedElementLabel.getBoundingClientRect().width / 2) + (this.getWidth() / 2);
+
+            selectedElementLabel.style.top = labelPositionTop + "px";
+            selectedElementLabel.style.left = labelPositionLeft + "px";
+        }
     }
 
     render(outlet, theme) {
@@ -34,6 +44,7 @@ export class GameObject {
         this.config.outlet = outlet;
         this.config.id = this.generateId();
         this.config.idSelector = "#" + this.config.id;
+        this.config.labelIdSelector = "#" + this.config.id + "-label";
 
         outlet.insertAdjacentHTML("beforeend",
         `
@@ -42,13 +53,25 @@ export class GameObject {
             </div>
         `);
 
-        let selectedElement = document.querySelector(this.config.idSelector);
+        let selectedElement, selectedElementLabel;
 
-        if (this.state.top) {
-            selectedElement.style.top = this.state.top + "px";
+        selectedElement = document.querySelector(this.config.idSelector);
+
+        if (this.config.label) {
+
+            outlet.insertAdjacentHTML("beforeend", `
+                <div id="${this.config.id}-label" class="label">
+                    ${this.config.label}
+                </div>
+            `);
+        }
+
+        if (this.state.top) {            
+            selectedElement.style.top = this.state.top + "px";            
         }
         else {
             this.state.top = selectedElement.getBoundingClientRect().top;
+            
         }
 
         if (this.state.left) {
