@@ -10,13 +10,37 @@ export function checkCollision(gameObjects) {
                 continue;
             }
 
-            // collision for X-Axis, ignoring the ground
+            // bouncing off an object from the bottom
             if ( currentObject.state.type != "ground" && compareObject.state.type != "ground" &&
                  currentObject.state.left + currentObject.getWidth() > compareObject.state.left &&
                  currentObject.state.left <= compareObject.state.left + compareObject.getWidth() &&
-                 currentObject.state.top + currentObject.getHeight() > compareObject.state.top + 2) {
+                 currentObject.state.top == compareObject.state.top + compareObject.getHeight()
+                 ) {
+                if (currentObject.state.type == "player") {
+                    currentObject.state.top = compareObject.state.top + compareObject.getHeight();
+                    currentObject.state.yAccel = 0;
+                }
+            }
+            // collision for gravity y-axis on the top of the object
+            else if ( ( currentObject.state.top + currentObject.getHeight() > compareObject.state.top) && 
+                 (compareObject.state.top > currentObject.state.top ) &&
+                 currentObject.state.left + currentObject.getWidth() > compareObject.state.left + 2 && 
+                (currentObject.state.left < (compareObject.state.left + compareObject.getWidth() - 2)) ) {
+                        
+                currentObject.state.top = compareObject.state.top - currentObject.getHeight();
+
+                currentObject.state.grounded = true;
+                currentObject.state.yAccel = 0.6;
+            }    
+            // collision for X-Axis, ignoring the ground
+            else if ( currentObject.state.type != "ground" && compareObject.state.type != "ground" &&
+                 currentObject.state.left + currentObject.getWidth() > compareObject.state.left &&
+                 currentObject.state.left <= compareObject.state.left + compareObject.getWidth() &&
+                 currentObject.state.top + currentObject.getHeight() > compareObject.state.top  &&
+                 currentObject.state.top < compareObject.state.top + compareObject.getHeight()) {
 
                 if ( currentObject.state.type == "player") {
+                    
                     if ( currentObject.state.left < compareObject.state.left) {
                         currentObject.state.left = compareObject.state.left - currentObject.getWidth();
                         if (!currentObject.state.grounded) {
@@ -31,15 +55,6 @@ export function checkCollision(gameObjects) {
                     }
                 }
             }
-            // collision for gravity y-axis
-            else if ( currentObject.state.top + currentObject.getHeight() > compareObject.state.top &&
-                 currentObject.state.left > compareObject.state.left - 5 && 
-                (currentObject.state.left < (compareObject.state.left + compareObject.getWidth() - 5)) ) {
-                currentObject.state.top = compareObject.state.top - currentObject.getHeight();
-
-                currentObject.state.grounded = true;
-                currentObject.state.yAccel = 0.6;
-            }    
         }
     }
 }

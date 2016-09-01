@@ -19,11 +19,11 @@ export class GameObject {
     }
 
     renderPosition() {
+        let selectedElement = document.querySelector(this.config.idSelector);
+
         if (this.state.static) {
             return;
         }
-
-        let selectedElement = document.querySelector(this.config.idSelector);
 
         selectedElement.style.top = this.state.top + "px";
         selectedElement.style.left = this.state.left + "px";

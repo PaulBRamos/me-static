@@ -1,0 +1,23 @@
+.box-mountains {
+    background: url("../img/box.png") 0 0 no-repeat;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+
+    animation: scrollquestionmark 1s steps(4) infinite;
+}
+
+@keyframes scrollquestionmark {
+    from { 
+        background-position: 0 0;
+    }
+    to {
+        background-position: -32px 0;
+    }
+    to {
+        background-position: -46px 0;
+    }
+    to {
+        background-position: -64px 0;
+    }
+}
