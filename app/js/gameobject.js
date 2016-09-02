@@ -6,6 +6,12 @@ export class GameObject {
         }
     }
 
+    checkInput() {
+        if (this.config.checkInputHandler) {
+            this.config.checkInputHandler.call(this);
+        }
+    }
+
     generateId() {
         return '_' + Math.random().toString(36).substr(2, 9);
     }

@@ -1,3 +1,5 @@
+let playerInputHandler = require("js/player-input-handler.js");
+
 window.Player = React.createClass({
     IDLE_RIGHT: "idle-right",
     IDLE_LEFT: "idle-left",
@@ -13,8 +15,12 @@ window.Player = React.createClass({
             left: 200,
             accelration: 1,
             type: "player",
-            grounded: null
+            grounded: null,
+            isStandingOn: null,
         };
+    },
+    checkInput: function() {
+        playerInputHandler.checkInputForPlayer();
     },
     getWidth: function() {
         return document.querySelector(".player").getBoundingClientRect().width;

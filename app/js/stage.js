@@ -19,7 +19,9 @@ export class Stage {
     }
 
     clearStage() {
-        document.querySelector(this.config.targetOutletSelector).innerHTML = "";
+        let stageOutlet = document.querySelector(this.config.targetOutletSelector);
+        stageOutlet.style.opacity = 0;
+        stageOutlet.innerHTML = "";
     }
 
     addObject(object) {
@@ -29,15 +31,24 @@ export class Stage {
 
     render() {
         let outlet = document.querySelector(this.config.targetOutletSelector),
-            el = document.createElement("div");
+            el = document.createElement("div"),
+            pageName = this.config.name;
 
         this.config.id = this.generateId();
         this.config.idSelector = "#" + this.config.id;
 
+        if (pageName == "home") {
+            // pageName = "";
+        }
+
         // render
         outlet.insertAdjacentHTML("beforeend",`
             <div id="player"></div>
-                <div id="${this.config.id}" class="background-${this.config.theme}">
+            
+            <div id="${this.config.id}" class="background-${this.config.theme}">
+                <div class="page-heading">
+                    ${pageName}
+                </div>
             </div>
         `);
 
@@ -47,5 +58,9 @@ export class Stage {
                 this.addObject(gameObject);
             }
         }
+
+        setTimeout(function() {
+            outlet.style.opacity = 1;
+        }, 500);
     }
 }

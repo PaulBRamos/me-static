@@ -3,8 +3,20 @@
     width: 16px;
     height: 16px;
     position: absolute;
+}
 
+.box-mountains {
     animation: scrollquestionmark 1s steps(4) infinite;
+}
+
+.box-mountains.empty {
+    animation: none;
+    background-position: -64px 0;
+}
+
+.box-image {
+    position: absolute;
+    animation: floatupslightlyanddisappear 3s;
 }
 
 @keyframes scrollquestionmark {
@@ -19,5 +31,15 @@
     }
     to {
         background-position: -64px 0;
+    }
+}
+
+@keyframes floatupslightlyanddisappear {
+    from {
+        opacity: 1;
+    }
+    to {
+        top: 0;
+        opacity: 0;
     }
 }

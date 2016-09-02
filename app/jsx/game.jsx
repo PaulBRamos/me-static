@@ -7,6 +7,7 @@ let router = require("js/router.js");
 window.Game = {
     stages: [],
     activeStage: null,
+    router: null,
 
     findStage: function(name) {
         for (var i in this.stages) {
@@ -44,7 +45,7 @@ window.Game = {
         window.requestAnimationFrame(this.loop.bind(this));
     },
     loop: function() {
-        input.checkInput();
+        input.checkInput(this.activeStage.gameObjects);
 
         physics.imposeGravity(this.activeStage.gameObjects);
 

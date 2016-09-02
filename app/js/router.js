@@ -1,5 +1,6 @@
 let gameObject = require("js/gameobject.js");
 let stage = require("js/stage.js");
+let boxHandlers = require("js/box-handlers.js");
 require("jsx/player.jsx");
 
 export class Router {
@@ -35,8 +36,6 @@ export class Router {
                     route = "home";
                 }
 
-                console.log(window.Game.stages);
-
                 if (stageIndex !== false) {
                     window.Game.activeStage = window.Game.stages[stageIndex];
                 }
@@ -55,12 +54,14 @@ export class Router {
                             // About stage tunnel
                             new gameObject.GameObject({
                                 classPrefix: "tunnel-",
-                                label: "About"
+                                label: "About",
+                                route: "about"
                             }, { top: 1, left: 300, type: "tunnel"}),
                             // Skills stage tunnel
                             new gameObject.GameObject({
                                 classPrefix: "tunnel-",
-                                label: "Skills"
+                                label: "Skills",
+                                route: "skills"
                             }, { top: 1, left: 400, type: "tunnel" }),
                             // Experience stage tunnel
                             new gameObject.GameObject({
@@ -90,15 +91,76 @@ export class Router {
                             new gameObject.GameObject({
                                 classPrefix: "ground-center-"
                             },{ static: true, type: "ground" }),
-                            // Test Box
+                            // About Box
                             new gameObject.GameObject({
                                 classPrefix: "box-",
-                                float: true
-                            }, { static: true, top: 170, left: 250, type: "box" })
+                                float: true,
+                                onHitBottom: boxHandlers.aboutBox,
+                                hits: 1
+                            }, { static: true, top: 170, left: 250, type: "box" }),
+                            // Home tunnel
+                            new gameObject.GameObject({
+                                classPrefix: "tunnel-",
+                                label: "Home",
+                                route: "home"
+                            }, { top: 1, left: 400, type: "tunnel" }),
                         ]
                     });
 
                     window.Game.stages.push(aboutStage);
+                    window.Game.activeStage = window.Game.stages[window.Game.findStage(route)];
+                }
+            break;
+            case "skills":
+                if (stageIndex !== false) {
+                    window.Game.activeStage = window.Game.stages[stageIndex];
+                }
+                else {
+                    // stage has never been created, so create it.
+                    let skillsStage = new stage.Stage({
+                        name: "skills",
+                        theme: "mountains",
+                        targetOutletSelector: "#stage",
+                        playerOutletId: "player",
+                        gameObjects: [
+                            // ground
+                            new gameObject.GameObject({
+                                classPrefix: "ground-center-"
+                            },{ static: true, type: "ground" }),
+                            // HTML5 Box
+                            new gameObject.GameObject({
+                                classPrefix: "box-",
+                                float: true,
+                                onHitBottom: boxHandlers.imageBox,
+                                imageForBox: "img/html5_logo.png",
+                                hits: 1
+                            }, { static: true, top: 170, left: 250, type: "box" }),
+                            // JavaScript Box
+                            new gameObject.GameObject({
+                                classPrefix: "box-",
+                                float: true,
+                                onHitBottom: boxHandlers.imageBox,
+                                imageForBox: "img/js_logo.png",
+                                hits: 1
+                            }, { static: true, top: 170, left: 300, type: "box" }),
+                            // CSS Box
+                            new gameObject.GameObject({
+                                classPrefix: "box-",
+                                float: true,
+                                onHitBottom: boxHandlers.imageBox,
+                                imageForBox: "img/css_logo.png",
+                                hits: 1
+                            }, { static: true, top: 170, left: 350, type: "box" }),
+                            // Home tunnel
+                            new gameObject.GameObject({
+                                classPrefix: "tunnel-",
+                                label: "Home",
+                                route: "home"
+                            }, { top: 1, left: 400, type: "tunnel" }),
+                        ]
+                    });
+
+                    window.Game.stages.push(skillsStage);
                     window.Game.activeStage = window.Game.stages[window.Game.findStage(route)];
                 }
             break;
