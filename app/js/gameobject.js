@@ -27,22 +27,30 @@ export class GameObject {
     renderPosition() {
         let selectedElement = document.querySelector(this.config.idSelector);
 
+        if (this.config.label) {
+            let selectedElementLabel = document.querySelector(this.config.labelIdSelector);
+
+            if (this.config.labelPosition === "fixed") {
+                selectedElementLabel.style.position = "fixed";
+                selectedElementLabel.style.top = this.config.labelTop;
+                selectedElementLabel.style.left = this.config.labelLeft;
+                // selectedElementLabel.classList.remove("");
+                return;
+            }
+
+            let labelPositionTop = this.state.top - (this.config.labelOffset ? this.config.labelOffset : 40),
+                labelPositionLeft = this.state.left - (selectedElementLabel.getBoundingClientRect().width / 2) + (this.getWidth() / 2);
+
+            selectedElementLabel.style.top = labelPositionTop + "px";
+            selectedElementLabel.style.left = labelPositionLeft + "px";
+        }
+
         if (this.state.static) {
             return;
         }
 
         selectedElement.style.top = this.state.top + "px";
         selectedElement.style.left = this.state.left + "px";
-
-        if (this.config.label) {
-            let selectedElementLabel = document.querySelector(this.config.labelIdSelector);
-
-            let labelPositionTop = this.state.top - 40,
-                labelPositionLeft = this.state.left - (selectedElementLabel.getBoundingClientRect().width / 2) + (this.getWidth() / 2);
-
-            selectedElementLabel.style.top = labelPositionTop + "px";
-            selectedElementLabel.style.left = labelPositionLeft + "px";
-        }
     }
 
     render(outlet, theme) {
@@ -60,13 +68,14 @@ export class GameObject {
         `);
 
         let selectedElement, selectedElementLabel;
+        let animation = this.config.labelAnimation ? this.config.labelAnimation : "bounce";
 
         selectedElement = document.querySelector(this.config.idSelector);
 
         if (this.config.label) {
 
             outlet.insertAdjacentHTML("beforeend", `
-                <div id="${this.config.id}-label" class="label">
+                <div id="${this.config.id}-label" class="label ${animation}">
                     ${this.config.label}
                 </div>
             `);

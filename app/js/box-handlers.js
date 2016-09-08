@@ -36,10 +36,15 @@ export function aboutBox() {
 }
 
 export function imageBox() {
+    if (this.config.hits === 0) {
+        return;
+    }
+
     bounceBox.call(this);
 
+    // TODO: Find the image width and position it based on that.
     let selectedElement = document.querySelector(this.config.idSelector),
-        top = -40,
+        top = -45,
         left = -6;
 
     selectedElement.insertAdjacentHTML("beforeend",
@@ -51,5 +56,5 @@ export function imageBox() {
         this.config.hits--;
     }
 
-    selectedElement.classList.add("empty");   
+    selectedElement.classList.add("empty");
 }

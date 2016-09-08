@@ -66,7 +66,8 @@ export class Router {
                             // Experience stage tunnel
                             new gameObject.GameObject({
                                 classPrefix: "tunnel-",
-                                label: "Experience"
+                                label: "Experience",
+                                route: "experience"
                             }, { top: 1, left: 500, type: "tunnel" })
                         ]
                     });
@@ -132,8 +133,14 @@ export class Router {
                                 classPrefix: "box-",
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
-                                imageForBox: "img/html5_logo.png",
-                                hits: 1
+                                imageForBox: "img/html5_logo_pixel.png",
+                                hits: 1,
+                                label: "-->HTML5",
+                                labelPosition: "fixed",
+                                labelTop: "15px",
+                                labelLeft: "15px",
+                                labelAnimation: "shimmer"
+                                // labelOffset: 60
                             }, { static: true, top: 170, left: 250, type: "box" }),
                             // JavaScript Box
                             new gameObject.GameObject({
@@ -141,7 +148,12 @@ export class Router {
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
                                 imageForBox: "img/js_logo.png",
-                                hits: 1
+                                hits: 1,
+                                label: "-->JavaScript (ES6)",
+                                labelPosition: "fixed",
+                                labelTop: "25px",
+                                labelLeft: "15px",
+                                labelAnimation: "shimmer"
                             }, { static: true, top: 170, left: 300, type: "box" }),
                             // CSS Box
                             new gameObject.GameObject({
@@ -149,8 +161,96 @@ export class Router {
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
                                 imageForBox: "img/css_logo.png",
-                                hits: 1
+                                hits: 1,
+                                label: "-->CSS3",
+                                labelPosition: "fixed",
+                                labelTop: "35px",
+                                labelLeft: "15px",
+                                labelAnimation: "shimmer"
                             }, { static: true, top: 170, left: 350, type: "box" }),
+                            // React JS Box
+                            new gameObject.GameObject({
+                                classPrefix: "box-",
+                                float: true,
+                                onHitBottom: boxHandlers.imageBox,
+                                imageForBox: "img/react_logo.png",
+                                hits: 1,
+                                label: "-->React JS",
+                                labelPosition: "fixed",
+                                labelTop: "45px",
+                                labelLeft: "15px",
+                                labelAnimation: "shimmer"
+                            }, { static: true, top: 170, left: 400, type: "box" }),
+                            // Backbone JS Box
+                            new gameObject.GameObject({
+                                classPrefix: "box-",
+                                float: true,
+                                onHitBottom: boxHandlers.imageBox,
+                                imageForBox: "img/backbone_logo.png",
+                                hits: 1,
+                                label: "-->BackBone JS",
+                                labelPosition: "fixed",
+                                labelTop: "55px",
+                                labelLeft: "15px",
+                                labelAnimation: "shimmer"
+                            }, { static: true, top: 170, left: 450, type: "box" }),
+                            // Grunt Logo
+                            new gameObject.GameObject({
+                                classPrefix: "box-",
+                                float: true,
+                                onHitBottom: boxHandlers.imageBox,
+                                imageForBox: "img/grunt_logo.png",
+                                hits: 1,
+                                label: "-->Grunt",
+                                labelPosition: "fixed",
+                                labelTop: "65px",
+                                labelLeft: "15px",
+                                labelAnimation: "shimmer"
+                            }, { static: true, top: 170, left: 500, type: "box" }),
+                            // Brunch Logo
+                            new gameObject.GameObject({
+                                classPrefix: "box-",
+                                float: true,
+                                onHitBottom: boxHandlers.imageBox,
+                                imageForBox: "img/brunch_logo.png",
+                                hits: 1,
+                                label: "-->Brunch",
+                                labelPosition: "fixed",
+                                labelTop: "75px",
+                                labelLeft: "15px",
+                                labelAnimation: "shimmer"
+                            }, { static: true, top: 170, left: 550, type: "box" }),
+                            // Home tunnel
+                            new gameObject.GameObject({
+                                classPrefix: "tunnel-",
+                                label: "Home",
+                                route: "home"
+                            }, { top: 1, left: 600, type: "tunnel" }),
+                        ]
+                    });
+
+                    window.Game.stages.push(skillsStage);
+                    window.Game.activeStage = window.Game.stages[window.Game.findStage(route)];
+                }
+            break;
+            case "experience":
+                let experienceStage = new stage.Stage({
+                        name: "experience",
+                        theme: "mountains",
+                        targetOutletSelector: "#stage",
+                        playerOutletId: "player",
+                        gameObjects: [
+                            // ground
+                            new gameObject.GameObject({
+                                classPrefix: "ground-center-"
+                            },{ static: true, type: "ground" }),
+                            // // About Box
+                            // new gameObject.GameObject({
+                            //     classPrefix: "box-",
+                            //     float: true,
+                            //     onHitBottom: boxHandlers.aboutBox,
+                            //     hits: 1
+                            // }, { static: true, top: 170, left: 250, type: "box" }),
                             // Home tunnel
                             new gameObject.GameObject({
                                 classPrefix: "tunnel-",
@@ -160,9 +260,8 @@ export class Router {
                         ]
                     });
 
-                    window.Game.stages.push(skillsStage);
+                    window.Game.stages.push(experienceStage);
                     window.Game.activeStage = window.Game.stages[window.Game.findStage(route)];
-                }
             break;
         }
 

@@ -16,7 +16,9 @@
 
 .box-image {
     position: absolute;
+    z-index: 4;
     animation: floatupslightlyanddisappear 3s;
+    /*opacity: 0;*/
 }
 
 @keyframes scrollquestionmark {
@@ -36,10 +38,11 @@
 
 @keyframes floatupslightlyanddisappear {
     from {
-        opacity: 1;
+        
     }
     to {
-        top: 0;
-        opacity: 0;
+        /*top: -100px;*/
+        /*width: 200px;*/
+        
     }
 }

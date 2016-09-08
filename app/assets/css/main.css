@@ -26,8 +26,23 @@
     position: absolute;
 
     text-shadow: 1px 1px 3px #000;
+}
 
+.bounce {
     animation: textfloatbounce cubic-bezier(0.645, 0.045, 0.355, 1) 2s infinite;
+}
+
+.shimmer {
+    animation: shimmer cubic-bezier(0.645, 0.045, 0.355, 1) 5s;
+}
+
+@keyframes shimmer {
+    0% {
+        
+    }
+    100% {
+        
+    }
 }
 
 @keyframes textfloatbounce {
