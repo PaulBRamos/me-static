@@ -1,0 +1,93 @@
+.main-logo {
+    background: url("../img/mario_title.png") no-repeat;
+    width: 200px;
+    height: 72px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -100px;
+
+    animation: scrolldown cubic-bezier(0.645, 0.045, 0.355, 1) 2s;
+}
+
+@keyframes scrolldown {
+    0% { 
+        top: -100px;
+    }
+    100% {
+        top: 50px;
+    }
+}
+
+.label {
+    color: #fff;
+    font-size: 8px;
+    font-family: Emulogic;
+    position: absolute;
+
+    text-shadow: 1px 1px 3px #000;
+}
+
+.bounce {
+    animation: textfloatbounce cubic-bezier(0.645, 0.045, 0.355, 1) 2s infinite;
+}
+
+.shimmer {
+    animation: shimmer cubic-bezier(0.645, 0.045, 0.355, 1) 5s;
+}
+
+@keyframes shimmer {
+    0% {
+        
+    }
+    100% {
+        
+    }
+}
+
+@keyframes textfloatbounce {
+    0% {
+        margin-top: 0;
+    }
+    50% {
+        margin-top: 10px;
+    }
+    100% {
+        margin-top: 0;
+    }
+}
+
+.page-heading {
+    font-family: "Mario";
+    font-size: 30px;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    color: #00d8f8;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px #000;
+
+    text-shadow: 3px 5px 0px #000;
+}
+
+.info-panel {
+    font-family: "Emulogic";
+    font-size: 9px;
+    color: #fff;
+    background: #000;
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    padding: 10px;
+    z-index: 3;
+}
+
+@font-face {
+    font-family: "Emulogic";
+    src: url("../font/emulogic.ttf");
+}
+
+@font-face {
+    font-family: "Mario";
+    src: url("../font/mario.ttf");
+}
