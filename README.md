@@ -11,4 +11,4 @@ WIP: A mario-clone-like game that was originally intended to act as a resume or 
 
 ## Demo
 
-[Click here to play](http://paulbramos.github.io/resume-game)
+[Click here to play](http://paulbramos.github.io/resume-game/public/index.html)
