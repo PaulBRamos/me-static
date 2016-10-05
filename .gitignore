@@ -18,12 +18,3 @@
 .tmproj
 nbproject
 Thumbs.db
-
-# NPM packages folder.
-node_modules/
-
-# Brunch output folder.
-public/
-
-# Bower components folder
-bower_components

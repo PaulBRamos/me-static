@@ -1,0 +1,45 @@
+.player {
+    background: url('../img/mario_sprite_sheet.png') no-repeat;
+    z-index: 3;
+    position: absolute;
+}
+
+.player.walking-right, .player.walking-left {
+    animation: walk .25s steps(2) infinite;
+}
+
+.player.walking-left, .player.idle-left {
+    transform: scaleX(-1);
+    filter: flipH;
+}
+
+.player.idle-right, .player.idle-left {
+    background-position: -14px -10px;
+    width: 14px;
+    height: 20px;
+}
+
+.player.jump-left {
+    transform: scaleX(-1);
+    filter: flipH;   
+}
+
+.player.jump-right, .player.jump-left {
+    /*background-position: -116px -7px;*/
+    background-position: -133px -7px;
+    width: 15px;
+    height: 22px;
+}
+
+@keyframes walk {
+    from { 
+        background-position: -31px -10px;
+        width: 15px;
+        height: 19px;
+    }
+    to {
+        background-position: 4px -10px;
+        width: 14px;
+        height: 20px;
+    }
+}
