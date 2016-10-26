@@ -1,5 +1,5 @@
 .player {
-    background: url('../img/mario_sprite_sheet.png') no-repeat;
+    background: url('../img/paul_sprite_sheet.png') no-repeat;
     z-index: 3;
     position: absolute;
 }
@@ -14,9 +14,9 @@
 }
 
 .player.idle-right, .player.idle-left {
-    background-position: -14px -10px;
-    width: 14px;
-    height: 20px;
+    animation: idle 3s steps(60) infinite;
+    width: 50px;
+    height: 94px;
 }
 
 .player.jump-left {
@@ -41,5 +41,11 @@
         background-position: 4px -10px;
         width: 14px;
         height: 20px;
+    }
+}
+
+@keyframes idle {
+    100% {
+        background-position: -3000px;
     }
 }
