@@ -1,45 +1,60 @@
-.player {
-    background: url('../img/mario_sprite_sheet.png') no-repeat;
+.player {    
     z-index: 3;
     position: absolute;
 }
 
 .player.walking-right, .player.walking-left {
-    animation: walk .25s steps(2) infinite;
+    background: url('../img/paul_sprite_sheet_walk.png') no-repeat;
+    background-position-y: 0;
+    width: 54px;
+    height: 100px;
+    animation: walk 1s steps(12) infinite;
 }
 
-.player.walking-left, .player.idle-left {
+.player.idle-right, .player.idle-left {
+    background: url('../img/paul_sprite_sheets_idle.png') no-repeat;
+    background-position-y: 5px;
+    animation: idle 3s steps(60) infinite;
+    width: 50px;
+    height: 100px;
+}
+
+.player.jump-right, .player.jump-left {
+    background: url('../img/paul_sprite_sheet_jump.png') no-repeat;
+    width: 78px;
+    height: 100px;
+    /*animation: jump 1s normal steps(2);*/
+}
+
+.player.walking-left, .player.idle-left, .player.jump-left {
     transform: scaleX(-1);
     filter: flipH;
 }
 
-.player.idle-right, .player.idle-left {
-    background-position: -14px -10px;
-    width: 14px;
-    height: 20px;
-}
-
-.player.jump-left {
-    transform: scaleX(-1);
-    filter: flipH;   
-}
-
-.player.jump-right, .player.jump-left {
-    /*background-position: -116px -7px;*/
-    background-position: -133px -7px;
-    width: 15px;
-    height: 22px;
-}
+/* KEYFRAMES  ========================== */
 
 @keyframes walk {
-    from { 
-        background-position: -31px -10px;
-        width: 15px;
-        height: 19px;
+    100% {
+        background-position: -780px 0;
     }
-    to {
-        background-position: 4px -10px;
-        width: 14px;
-        height: 20px;
+}
+
+@keyframes idle {
+    70% {
+        animation-duration: .2s;
+    }
+    100% {
+        background-position: -3000px 5px;
+        animation-duration: 1s;
+    }
+}
+
+@keyframes jump {
+    0% {
+        height: 105px;
+    }
+    100% {
+        height: 100px;
+        background-position: -180px;
     }
 }

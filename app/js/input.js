@@ -7,12 +7,14 @@ export const keys = {
     DOWN: 40
 };
 
-window.addEventListener('keydown', (event) => {
+window.addEventListener('keydown touchstart', (event) => {
     keyState[event.keyCode] = true;
+    event.preventDefault();
 });
 
-window.addEventListener('keyup', (event) => {
+window.addEventListener('keyup touchend', (event) => {
     keyState[event.keyCode] = false;
+    event.preventDefault();
 });
 
 export function checkInput(gameObjects) {

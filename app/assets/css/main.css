@@ -1,3 +1,13 @@
+body, html {
+    background: #000;
+    padding: 0;
+    margin: 0;
+}
+#app {
+    width: 1044px;
+    height: 293px;
+}
+
 .main-logo {
     background: url("../img/mario_title.png") no-repeat;
     width: 200px;
@@ -61,8 +71,8 @@
     font-family: "Mario";
     font-size: 30px;
     position: fixed;
+    left: 10px;
     top: 10px;
-    right: 20px;
     color: #00d8f8;
     text-transform: uppercase;
     -webkit-text-stroke: 1px #000;

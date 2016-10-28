@@ -1,12 +1,21 @@
+#stage {
+    
+}
+
 .background-mountains {
-    background: url('../img/mountains_bg.jpg') repeat-x bottom;
-    width: 100%;
-    /*height: 432px;*/
-    height: 220px;
+    background: url('../img/background_sprite_sheet.png') repeat-x;
+    height: 278px;
+    animation: backgroundanimation 5s steps(60) infinite;
 }
 
 .ground-center-mountains {
-    background: url('../img/ground_center_mountains.jpg') repeat-x;
-    height: 27px;
+    background: url('../img/ground_center.png') repeat-x;
+    height: 15px;
     position: relative;
+}
+
+@keyframes backgroundanimation {
+    100% {
+        background-position: -62640px;
+    }
 }
