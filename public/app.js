@@ -410,12 +410,14 @@ var keys = exports.keys = {
     DOWN: 40
 };
 
-window.addEventListener('keydown', function (event) {
+window.addEventListener('keydown touchstart', function (event) {
     keyState[event.keyCode] = true;
+    event.preventDefault();
 });
 
-window.addEventListener('keyup', function (event) {
+window.addEventListener('keyup touchend', function (event) {
     keyState[event.keyCode] = false;
+    event.preventDefault();
 });
 
 function checkInput(gameObjects) {
