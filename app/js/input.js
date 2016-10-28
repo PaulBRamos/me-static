@@ -7,12 +7,22 @@ export const keys = {
     DOWN: 40
 };
 
-window.addEventListener('keydown touchstart', (event) => {
+window.addEventListener('keydown', (event) => {
     keyState[event.keyCode] = true;
     event.preventDefault();
 });
 
-window.addEventListener('keyup touchend', (event) => {
+window.addEventListener('keyup', (event) => {
+    keyState[event.keyCode] = false;
+    event.preventDefault();
+});
+
+window.addEventListener('touchstart', (event) => {
+    keyState[event.keyCode] = true;
+    event.preventDefault();
+});
+
+window.addEventListener('touchend', (event) => {
     keyState[event.keyCode] = false;
     event.preventDefault();
 });

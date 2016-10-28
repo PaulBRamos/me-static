@@ -410,12 +410,22 @@ var keys = exports.keys = {
     DOWN: 40
 };
 
-window.addEventListener('keydown touchstart', function (event) {
+window.addEventListener('keydown', function (event) {
     keyState[event.keyCode] = true;
     event.preventDefault();
 });
 
-window.addEventListener('keyup touchend', function (event) {
+window.addEventListener('keyup', function (event) {
+    keyState[event.keyCode] = false;
+    event.preventDefault();
+});
+
+window.addEventListener('touchstart', function (event) {
+    keyState[event.keyCode] = true;
+    event.preventDefault();
+});
+
+window.addEventListener('touchend', function (event) {
     keyState[event.keyCode] = false;
     event.preventDefault();
 });
