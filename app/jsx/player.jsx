@@ -1,15 +1,18 @@
-let playerInputHandler = require("js/player-input-handler.js");
+let playerInputHandler = require("../js/player-input-handler.js");
+import React from "react";
 
-window.Player = React.createClass({
-    IDLE_RIGHT: "idle-right",
-    IDLE_LEFT: "idle-left",
-    WALKING_RIGHT: "walking-right",
-    WALKING_LEFT: "walking-left",
-    JUMP_RIGHT: "jump-right",
-    JUMP_LEFT: "jump-left",
+export default class Player extends React.Component {
+    constructor(props) {
+        super(props);
 
-    getInitialState: function () {
-        return {
+        this.IDLE_RIGHT = "idle-right";
+        this.IDLE_LEFT = "idle-left";
+        this.WALKING_RIGHT = "walking-right";
+        this.WALKING_LEFT = "walking-left";
+        this.JUMP_RIGHT = "jump-right";
+        this.JUMP_LEFT = "jump-left";
+
+        this.state = {
             action: this.IDLE_RIGHT,
             top: 0,
             left: 200,
@@ -18,17 +21,26 @@ window.Player = React.createClass({
             grounded: null,
             isStandingOn: null,
         };
-    },
-    checkInput: function() {
+    }
+
+    componentDidMount() {
+        this._mounted = true;
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    checkInput() {
         playerInputHandler.checkInputForPlayer();
-    },
-    getWidth: function() {
+    }
+    getWidth() {
         return document.querySelector(".player").getBoundingClientRect().width;
-    },
-    getHeight: function() {
+    }
+    getHeight() {
         return document.querySelector(".player").getBoundingClientRect().height;
-    },
-    render: function () {
+    }
+    render() {
         if (!this.state.grounded) {
             if (this.state.action == this.WALKING_RIGHT ||
                 this.state.action == this.IDLE_RIGHT) {
@@ -55,4 +67,4 @@ window.Player = React.createClass({
             </div>
         );
     }
-  });
+};

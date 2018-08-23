@@ -1,7 +1,16 @@
-let gameObject = require("js/gameobject.js");
-let stage = require("js/stage.js");
-let boxHandlers = require("js/box-handlers.js");
-require("jsx/player.jsx");
+let gameObject = require("./gameobject.js");
+let stage = require("./stage.js");
+let boxHandlers = require("./box-handlers.js");
+require("../jsx/player.jsx");
+
+import ReactDOM from "react-dom";
+
+import backbone_logo from "../assets/img/backbone_logo.png";
+import react_logo from "../assets/img/react_logo.png";
+import css_logo from "../assets/img/css_logo.png";
+import html5_logo_pixel from "../assets/img/html5_logo_pixel.png";
+import js_logo from "../assets/img/js_logo.png";
+import webpack_logo from "../assets/img/webpack_logo.png";
 
 export class Router {
     constructor() {
@@ -133,7 +142,7 @@ export class Router {
                                 classPrefix: "box-",
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
-                                imageForBox: "img/html5_logo_pixel.png",
+                                imageForBox: html5_logo_pixel,
                                 hits: 1,
                                 label: "-->HTML5",
                                 labelPosition: "fixed",
@@ -147,7 +156,7 @@ export class Router {
                                 classPrefix: "box-",
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
-                                imageForBox: "img/js_logo.png",
+                                imageForBox: js_logo,
                                 hits: 1,
                                 label: "-->JavaScript (ES6)",
                                 labelPosition: "fixed",
@@ -160,7 +169,7 @@ export class Router {
                                 classPrefix: "box-",
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
-                                imageForBox: "img/css_logo.png",
+                                imageForBox: css_logo,
                                 hits: 1,
                                 label: "-->CSS3",
                                 labelPosition: "fixed",
@@ -173,7 +182,7 @@ export class Router {
                                 classPrefix: "box-",
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
-                                imageForBox: "img/react_logo.png",
+                                imageForBox: react_logo,
                                 hits: 1,
                                 label: "-->React JS",
                                 labelPosition: "fixed",
@@ -186,7 +195,7 @@ export class Router {
                                 classPrefix: "box-",
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
-                                imageForBox: "img/backbone_logo.png",
+                                imageForBox: backbone_logo,
                                 hits: 1,
                                 label: "-->BackBone JS",
                                 labelPosition: "fixed",
@@ -194,38 +203,25 @@ export class Router {
                                 labelLeft: "15px",
                                 labelAnimation: "shimmer"
                             }, { static: true, top: 170, left: 450, type: "box" }),
-                            // Grunt Logo
+                            // Webpack Logo
                             new gameObject.GameObject({
                                 classPrefix: "box-",
                                 float: true,
                                 onHitBottom: boxHandlers.imageBox,
-                                imageForBox: "img/grunt_logo.png",
+                                imageForBox: webpack_logo,
                                 hits: 1,
-                                label: "-->Grunt",
+                                label: "-->Webpack",
                                 labelPosition: "fixed",
                                 labelTop: "65px",
                                 labelLeft: "15px",
                                 labelAnimation: "shimmer"
                             }, { static: true, top: 170, left: 500, type: "box" }),
-                            // Brunch Logo
-                            new gameObject.GameObject({
-                                classPrefix: "box-",
-                                float: true,
-                                onHitBottom: boxHandlers.imageBox,
-                                imageForBox: "img/brunch_logo.png",
-                                hits: 1,
-                                label: "-->Brunch",
-                                labelPosition: "fixed",
-                                labelTop: "75px",
-                                labelLeft: "15px",
-                                labelAnimation: "shimmer"
-                            }, { static: true, top: 170, left: 550, type: "box" }),
                             // Home tunnel
                             new gameObject.GameObject({
                                 classPrefix: "tunnel-",
                                 label: "Home",
                                 route: "home"
-                            }, { top: 1, left: 600, type: "tunnel" }),
+                            }, { top: 1, left: 550, type: "tunnel" }),
                         ]
                     });
 

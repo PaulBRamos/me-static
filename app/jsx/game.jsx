@@ -1,8 +1,12 @@
-let input = require("js/input");
-let physics = require("js/physics");
-let collision = require("js/collision");
-let render = require("js/render.js");
-let router = require("js/router.js");
+let input = require("../js/input");
+let physics = require("../js/physics");
+let collision = require("../js/collision");
+let render = require("../js/render.js");
+let router = require("../js/router.js");
+
+import ReactDOM from "react-dom";
+import React from "react";
+import Player from "../jsx/player.jsx";
 
 window.Game = {
     stages: [],

@@ -1,4 +1,4 @@
-let input = require("js/input.js");
+let input = require("./input.js");
 let keyState = input.keyState;
 let keys = input.keys;
 let fireOncePerPress = false;
@@ -127,7 +127,7 @@ export  function checkInputForPlayer() {
         }
     }
 
-    if (!player.isMounted()) {
+    if (!player._mounted) {
         return;
     }
 

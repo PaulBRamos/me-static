@@ -10,8 +10,8 @@ export function checkCollision(gameObjects) {
                 continue;
             }
 
-            if (currentObject.state.type == "player" && !currentObject.isMounted() ||
-                compareObject.state.type == "player" && !compareObject.isMounted()) {
+            if (currentObject.state.type == "player" && !currentObject._mounted ||
+                compareObject.state.type == "player" && !compareObject._mounted) {
                 return;
             }
 
